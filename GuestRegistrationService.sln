@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp", "WebApp\WebApp.csproj", "{A88FF36F-D7E8-4A87-AB3C-C9CD5C7ADE67}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6C8DC841-93B5-40FB-A3BB-3EFA0074815D}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
@@ -14,25 +12,27 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DOMAIN", "DOMAIN", "{9DDDA797-C010-44AD-BFFC-B4A36500F07E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain.App", "Domain.App\Domain.App.csproj", "{D63A966D-C595-4399-BF08-DE30CECACA33}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain.App", "Domain.App\Domain.App.csproj", "{D63A966D-C595-4399-BF08-DE30CECACA33}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain.Base", "Domain.Base\Domain.Base.csproj", "{AE1FEFAE-F0F1-4BF1-B2B3-00F3C26DD1B9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain.Base", "Domain.Base\Domain.Base.csproj", "{AE1FEFAE-F0F1-4BF1-B2B3-00F3C26DD1B9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contracts.Domain", "Contracts.Domain\Contracts.Domain.csproj", "{7E9E0BBC-93E5-4D82-90F7-78FA1C0A7035}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contracts.Domain", "Contracts.Domain\Contracts.Domain.csproj", "{7E9E0BBC-93E5-4D82-90F7-78FA1C0A7035}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain.Logic", "Domain.Logic\Domain.Logic.csproj", "{019F444B-E2E8-45B4-93EB-4BC56C6F44D1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain.Logic", "Domain.Logic\Domain.Logic.csproj", "{019F444B-E2E8-45B4-93EB-4BC56C6F44D1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DAL", "DAL", "{B9B4155A-0BB5-4C55-ACF7-C068F0A82CAE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contracts.DAL.App", "Contracts.DAL.App\Contracts.DAL.App.csproj", "{CDFACBBE-B7B3-4791-AFBF-3A59E0D27915}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contracts.DAL.App", "Contracts.DAL.App\Contracts.DAL.App.csproj", "{CDFACBBE-B7B3-4791-AFBF-3A59E0D27915}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contracts.DAL.Base", "Contracts.DAL.Base\Contracts.DAL.Base.csproj", "{CF7AF21D-5DED-4BE5-B7EC-118E9BE471E7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contracts.DAL.Base", "Contracts.DAL.Base\Contracts.DAL.Base.csproj", "{CF7AF21D-5DED-4BE5-B7EC-118E9BE471E7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL.App.DTO", "DAL.App.DTO\DAL.App.DTO.csproj", "{BACBA3A8-1C4A-44C3-AC8C-EB976783E3C1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DAL.App.DTO", "DAL.App.DTO\DAL.App.DTO.csproj", "{BACBA3A8-1C4A-44C3-AC8C-EB976783E3C1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL.App.EF", "DAL.App.EF\DAL.App.EF.csproj", "{B4B1359C-E060-4B88-813A-038F2FAB1357}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DAL.App.EF", "DAL.App.EF\DAL.App.EF.csproj", "{B4B1359C-E060-4B88-813A-038F2FAB1357}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL.Base.EF", "DAL.Base.EF\DAL.Base.EF.csproj", "{24302A50-97BB-4A1B-953A-7102FB31705A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DAL.Base.EF", "DAL.Base.EF\DAL.Base.EF.csproj", "{24302A50-97BB-4A1B-953A-7102FB31705A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp", "WebApp\WebApp.csproj", "{2F14D38B-B850-4CCA-AE8D-A182FFE2D808}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -40,10 +40,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{A88FF36F-D7E8-4A87-AB3C-C9CD5C7ADE67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A88FF36F-D7E8-4A87-AB3C-C9CD5C7ADE67}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A88FF36F-D7E8-4A87-AB3C-C9CD5C7ADE67}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A88FF36F-D7E8-4A87-AB3C-C9CD5C7ADE67}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D63A966D-C595-4399-BF08-DE30CECACA33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D63A966D-C595-4399-BF08-DE30CECACA33}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D63A966D-C595-4399-BF08-DE30CECACA33}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -80,6 +76,10 @@ Global
 		{24302A50-97BB-4A1B-953A-7102FB31705A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{24302A50-97BB-4A1B-953A-7102FB31705A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{24302A50-97BB-4A1B-953A-7102FB31705A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F14D38B-B850-4CCA-AE8D-A182FFE2D808}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F14D38B-B850-4CCA-AE8D-A182FFE2D808}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F14D38B-B850-4CCA-AE8D-A182FFE2D808}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F14D38B-B850-4CCA-AE8D-A182FFE2D808}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
