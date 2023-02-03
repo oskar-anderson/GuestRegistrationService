@@ -11,6 +11,6 @@ public class EventRealLife : IDomainEntityId
     public string Place { get; set; } = default!;
     
     public string ExtraInfo { get; set; } = default!;
-    public ICollection<ParticipantCivilian>? CivilianParticipants { get; set; }
-    public ICollection<ParticipantBusiness>? BusinessParticipants { get; set; }
+    public ICollection<ParticipantCivilian> CivilianParticipants { get; set; } = default!;
+    public ICollection<ParticipantBusiness> BusinessParticipants { get; set; } = default!;
 }

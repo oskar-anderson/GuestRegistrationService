@@ -7,7 +7,7 @@ namespace Domain.App
 {
     public class ParticipantCivilian : DomainEntityIdMetadata
     {
-        public Guid EventId { get; set; } = default!;
+        public Guid EventId { get; set; }
         public EventRealLife? Event { get; set; }
         
         [MaxLength(255)]
@@ -20,7 +20,7 @@ namespace Domain.App
         // This is un-normalized string value for UISelectOption.
         // This is unsafe as UISelectOption comes from Database and must be modifiable by spec.
         // If someone changes the PaymentType UISelectOption value the UISelectOption will have to default - this is what Google Forms does.
-        [MaxLength(255, ErrorMessage = "Something is very wrong! Value from UISelectOption cannot reasonably be more than 255 chars!")]
+        [MaxLength(255)]
         public string PaymentTypeValue { get; set; } = default!;
         
         [MaxLength(1500)]

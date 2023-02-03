@@ -12,14 +12,14 @@ namespace Domain.Base
 
     public abstract class DomainEntityIdMetadata<TKey> : DomainEntityId<TKey> where TKey : IEquatable<TKey>
     {
-        [MaxLength(256)]
+        [MaxLength(255)]
         [JsonIgnore]
         public string? CreatedBy { get; set; }
 
         [JsonIgnore]
         public DateTime CreatedAt { get; set; }
 
-        [MaxLength(256)]
+        [MaxLength(255)]
         [JsonIgnore]
         public string? ChangedBy { get; set; }
 

@@ -1,6 +1,10 @@
+using Contracts.DAL.Base;
+using DAL.App.EF;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
+using Microsoft.EntityFrameworkCore;
 using WebApp.Data;
+using WebApp.Helpers;
 
 namespace WebApp
 {
@@ -10,7 +14,18 @@ namespace WebApp
         {
             var builder = WebApplication.CreateBuilder(args);
 
+
+            builder.Services.AddDbContext<AppDbContext>(options =>
+            {
+                var connetionString = builder.Configuration.GetConnectionString("DefaultConnection");
+                options.UseMySql(connetionString, ServerVersion.AutoDetect(connetionString));
+            });
+            
             // Add services to the container.
+            // makes httpcontext injectable - needed to resolve username in dal layer
+            builder.Services.AddHttpContextAccessor();
+            builder.Services.AddScoped<IUserNameProvider, UserNameProvider>();
+            
             builder.Services.AddRazorPages();
             builder.Services.AddServerSideBlazor();
             builder.Services.AddSingleton<WeatherForecastService>();

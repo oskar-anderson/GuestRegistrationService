@@ -8,7 +8,7 @@ namespace Domain.App
 {
     public class EventRealLife : DomainEntityIdMetadata
     {
-        [MaxLength(255, ErrorMessage = $"{nameof(Name)}")]
+        [MaxLength(255)]
         public string Name { get; set; } = default!;
         [Validations.DateIsInTheFuture]
         public DateTime HappeningDate { get; set; }

@@ -57,6 +57,7 @@ public class EventRealLifeRepository : EFBaseRepository<DTO.EventRealLife>, IEve
                         Type = "citizen"
                     })
                 ).ToList()
+            
         };
     }
 }
