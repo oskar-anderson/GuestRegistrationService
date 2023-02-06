@@ -1,55 +1,79 @@
 using Contracts.DAL.Base;
 using DAL.App.EF;
-using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Web;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using WebApp.Data;
 using WebApp.Helpers;
 
-namespace WebApp
-{
-    public class Program
-    {
-        public static void Main(string[] args)
+namespace WebApp;
+
+public static class Program {
+    public static void Main(string[] args) {
+        var builder = WebApplication.CreateBuilder(args);
+
+        // Add services to the container.
+        builder.Services.AddDbContext<AppDbContext>(options =>
         {
-            var builder = WebApplication.CreateBuilder(args);
+            var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ??
+                                   throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+            options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
+        });
+        // makes httpcontext injectable - needed to resolve username in dal layer
+        builder.Services.AddHttpContextAccessor();
+        builder.Services.AddScoped<IUserNameProvider, UserNameProvider>();
+        
+        builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
+        builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            .AddEntityFrameworkStores<AppDbContext>();
+        // builder.Services.AddControllersWithViews();
+        builder.Services.AddRazorPages();
 
-            builder.Services.AddDbContext<AppDbContext>(options =>
-            {
-                var connetionString = builder.Configuration.GetConnectionString("DefaultConnection");
-                options.UseMySql(connetionString, ServerVersion.AutoDetect(connetionString));
-            });
-            
-            // Add services to the container.
-            // makes httpcontext injectable - needed to resolve username in dal layer
-            builder.Services.AddHttpContextAccessor();
-            builder.Services.AddScoped<IUserNameProvider, UserNameProvider>();
-            
-            builder.Services.AddRazorPages();
-            builder.Services.AddServerSideBlazor();
-            builder.Services.AddSingleton<WeatherForecastService>();
+        var app = builder.Build();
 
-            var app = builder.Build();
-
-            // Configure the HTTP request pipeline.
-            if (!app.Environment.IsDevelopment())
-            {
-                app.UseExceptionHandler("/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                app.UseHsts();
-            }
-
-            app.UseHttpsRedirection();
-
-            app.UseStaticFiles();
-
-            app.UseRouting();
-
-            app.MapBlazorHub();
-            app.MapFallbackToPage("/_Host");
-
-            app.Run();
+        // Configure the HTTP request pipeline.
+        if (app.Environment.IsDevelopment())
+        {
+            app.UseMigrationsEndPoint();
         }
+        else
+        {
+            app.UseExceptionHandler("/Home/Error");
+            // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+            app.UseHsts();
+        }
+
+        app.UseHttpsRedirection();
+        app.UseStaticFiles();
+
+        app.UseRouting();
+
+        app.UseAuthorization();
+
+        app.MapControllerRoute(
+            name: "default",
+            pattern: "{controller=Home}/{action=Index}/{id?}"
+        );
+        app.MapControllerRoute(
+            name: "area",
+            pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+        );
+        app.MapRazorPages();
+        /*
+
+        app.UseEndpoints(endpoints =>
+        {
+            endpoints.MapControllerRoute(
+                name: "area",
+                pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
+            endpoints.MapControllerRoute(
+                name: "default",
+                pattern: "{controller=Home}/{action=Index}/{id?}");
+            
+            endpoints.MapRazorPages();
+        });
+         */ 
+
+        app.Run();
     }
 }
