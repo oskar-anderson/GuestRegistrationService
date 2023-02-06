@@ -8,7 +8,7 @@ public class ParticipantUnified
     public string Code { get; set; } = default!;
     public int ParticipantCount { get; set; } = 1;  // 1 for civilian, x for business
     
-    public ParticipantUnified MapDal(DAL.App.DTO.ParticipantUnified dalDto)
+    public ParticipantUnified MapFromDal(DAL.App.DTO.ParticipantUnified dalDto)
     {
         return new ParticipantUnified()
         {

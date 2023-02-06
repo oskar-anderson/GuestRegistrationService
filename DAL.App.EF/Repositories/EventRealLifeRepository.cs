@@ -22,6 +22,8 @@ public class EventRealLifeRepository : EFBaseRepository<DTO.EventRealLife>, IEve
                 Id = e.Id, 
                 Name = e.Name,
                 HappeningDate = e.HappeningDate,
+                Place = e.Place,
+                ExtraInfo = e.ExtraInfo,
                 ParticipantCount = e.CivilianParticipants!.Count + e.BusinessParticipants!.Select(bp => bp.ParticipantCount).Sum()
             }).ToListAsync();
     }

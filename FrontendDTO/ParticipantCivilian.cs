@@ -16,7 +16,7 @@ public class ParticipantCivilian
     public string PaymentTypeValue { get; set; } = default!;
     public string ExtraInfo { get; set; } = default!;
 
-    public ParticipantCivilian MapDal(DAL.App.DTO.ParticipantCivilian dalDto)
+    public ParticipantCivilian MapFromDal(DAL.App.DTO.ParticipantCivilian dalDto)
     {
         return new ParticipantCivilian()
         {

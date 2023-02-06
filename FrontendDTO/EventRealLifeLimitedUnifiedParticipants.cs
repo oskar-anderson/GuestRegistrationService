@@ -10,7 +10,7 @@ public class EventRealLifeLimitedUnifiedParticipants
     public string ExtraInfo { get; set; } = default!;
     public List<ParticipantUnified> Participants { get; set; } = default!;
     
-    public EventRealLifeLimitedUnifiedParticipants MapDal(DAL.App.DTO.EventRealLifeLimitedUnifiedParticipants dalDto)
+    public EventRealLifeLimitedUnifiedParticipants MapFromDal(DAL.App.DTO.EventRealLifeLimitedUnifiedParticipants dalDto)
     {
         return new EventRealLifeLimitedUnifiedParticipants()
         {
@@ -19,7 +19,7 @@ public class EventRealLifeLimitedUnifiedParticipants
             HappeningDate = dalDto.HappeningDate,
             Place = dalDto.Place,
             ExtraInfo = dalDto.ExtraInfo,
-            Participants = dalDto.Participants.Select(x => new ParticipantUnified().MapDal(x)).ToList(),
+            Participants = dalDto.Participants.Select(x => new ParticipantUnified().MapFromDal(x)).ToList(),
         };
     }
 }

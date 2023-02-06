@@ -12,11 +12,9 @@ public class EventRealLife
     public string Place { get; set; } = default!;
     
     public string ExtraInfo { get; set; } = default!;
-    public ICollection<ParticipantCivilian>? CivilianParticipants { get; set; }
-    public ICollection<ParticipantBusiness>? BusinessParticipants { get; set; }
 
-    
-    public EventRealLife MapDal(DAL.App.DTO.EventRealLife dalDto)
+
+    public static EventRealLife MapFromDal(DAL.App.DTO.EventRealLife dalDto)
     {
         return new EventRealLife()
         {
@@ -25,8 +23,18 @@ public class EventRealLife
             HappeningDate = dalDto.HappeningDate,
             Place = dalDto.Place,
             ExtraInfo = dalDto.ExtraInfo,
-            CivilianParticipants = dalDto.CivilianParticipants.Select(x => new ParticipantCivilian().MapDal(x)).ToList(),
-            BusinessParticipants = dalDto.BusinessParticipants.Select(x => new ParticipantBusiness().MapDal(x)).ToList()
+        };
+    }
+
+    public DAL.App.DTO.EventRealLife MapToDal()
+    {
+        return new DAL.App.DTO.EventRealLife()
+        {
+            Id = Id,
+            Name = Name,
+            HappeningDate = HappeningDate,
+            Place = Place,
+            ExtraInfo = ExtraInfo,
         };
     }
 }

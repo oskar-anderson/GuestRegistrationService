@@ -18,7 +18,7 @@ public class UISelectOption
     [MaxLength(255, ErrorMessage = $"{nameof(Value)} must be shorter than 255 characters!")]
     public string Value { get; set; } = default!;
     
-    public UISelectOption MapDal(DAL.App.DTO.UISelectOption dalDto)
+    public UISelectOption MapFromDal(DAL.App.DTO.UISelectOption dalDto)
     {
         return new UISelectOption()
         {

@@ -18,7 +18,7 @@ public class ParticipantBusiness
     
     public string ExtraInfo { get; set; } = default!;
 
-    public ParticipantBusiness MapDal(DAL.App.DTO.ParticipantBusiness dalDto)
+    public ParticipantBusiness MapFromDal(DAL.App.DTO.ParticipantBusiness dalDto)
     {
         return new ParticipantBusiness()
         {
