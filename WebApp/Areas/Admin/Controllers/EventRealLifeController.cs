@@ -16,8 +16,8 @@ public class EventRealLifeController : Controller
     }
     
     
-    // GET: EventRealLife
-    public IActionResult Index()
+    [HttpGet("EventRealLife")]
+    public async Task<IActionResult> Index()
     {
         var events = new List<FrontendDTO.EventRealLifeLimitedOnlyCount>()
         {
@@ -32,10 +32,24 @@ public class EventRealLifeController : Controller
             }
         };
         return View(events);
+        /*
+        var events = await _repository.GetAllAsyncBase();
+        var frontEvents = events.Select(x => FrontendDTO.EventRealLife.MapFromDal(x)).ToList();
+        var limitedFrontEvents = frontEvents.Select(x => new FrontendDTO.EventRealLifeLimitedOnlyCount()
+        {
+            Id = x.Id,
+            Name = x.Name,
+            ExtraInfo = x.ExtraInfo,
+            HappeningDate = x.HappeningDate,
+            Place = x.Place,
+            ParticipantCount = 5
+        });
+        return View(limitedFrontEvents);
+        */
     }
     
-        
-    // GET: EventRealLife/Details/5
+    
+    [HttpGet("EventRealLife/Details/{id}")]
     public async Task<IActionResult> Details(Guid id)
     {
         var eventDal = await _repository.FirstOrDefault(id);
@@ -48,30 +62,28 @@ public class EventRealLifeController : Controller
         return View(eventRealLife);
     }
     
-    // GET: EventRealLife/Create
+    [HttpGet("EventRealLife/Create")]
     public IActionResult Create()
     {
-        return View(new EventRealLife());
+        return View(new EventRealLife()
+        {
+            Id = new Guid()
+        });
     }
     
-    // POST: EventRealLife/Create
-    [HttpPost]
+    [HttpPost("EventRealLife/Create")]
     public IActionResult Create(EventRealLife eventRealLife)
     {
         if (!ModelState.IsValid) return View(eventRealLife);
+        Console.WriteLine(System.Text.Json.JsonSerializer.Serialize(eventRealLife));
         _repository.Add(eventRealLife.MapToDal());
         return RedirectToAction(nameof(Index));
     }
 
-    // GET: EventRealLife/Edit/5
-    public async Task<IActionResult> Edit(Guid? id)
+    [HttpGet("EventRealLife/Edit/{id}")]
+    public async Task<IActionResult> Edit(Guid id)
     {
-        if (id == null)
-        {
-            return NotFound();
-        }
-
-        var eventRealLife = await _repository.FirstOrDefault(id.Value, false);
+        var eventRealLife = await _repository.FirstOrDefault(id, false);
         if (eventRealLife == null)
         {
             return NotFound();
@@ -79,10 +91,9 @@ public class EventRealLifeController : Controller
         return View(EventRealLife.MapFromDal(eventRealLife));
     }
     
-    // POST: EventRealLife/Edit/5
     // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
     // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-    [HttpPost]
+    [HttpPost("EventRealLife/Edit/{id}")]
     public async Task<IActionResult> Edit(Guid id, EventRealLife eventRealLife)
     {
         if (id != eventRealLife.Id)
@@ -95,20 +106,27 @@ public class EventRealLifeController : Controller
         return RedirectToAction(nameof(Index));
     }
     
-    // GET: EventRealLife/Delete/5
-    public async Task<IActionResult> Delete(Guid? id)
+    [HttpGet("EventRealLife/Delete/{id}")]
+    public async Task<IActionResult> Delete(Guid id)
     {
-        if (id == null)
-        {
-            return NotFound();
-        }
-
-        var eventRealLife = await _repository.FirstOrDefault(id.Value);
+        var eventRealLife = await _repository.FirstOrDefault(id);
         if (eventRealLife == null)
         {
             return NotFound();
         }
 
         return View(EventRealLife.MapFromDal(eventRealLife));
+    }
+    
+    [HttpPost("EventRealLife/Delete/{id}"), ActionName("Delete")]
+    public async Task<IActionResult> DeleteConfirmed(Guid id)
+    {
+        var eventRealLife = await _repository.FirstOrDefault(id);
+        if (eventRealLife == null)
+        {
+            return NotFound();
+        }
+        await _repository.RemoveAsync(eventRealLife);
+        return RedirectToAction(nameof(Index));
     }
 }

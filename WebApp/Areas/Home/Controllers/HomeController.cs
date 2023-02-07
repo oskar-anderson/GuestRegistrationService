@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using WebApp.Models;
 
-namespace WebApp.Controllers;
+namespace WebApp.Views.Controllers;
 
 public class HomeController : Controller
 {
@@ -15,17 +15,17 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
-        return View();
+        return View("~/Areas/Home/Views/Index.cshtml");
     }
 
     public IActionResult Privacy()
     {
-        return View();
+        return View("~/Areas/Home/Views/Privacy.cshtml");
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
     {
-        return View(new ErrorViewModel {RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier});
+        return View("~/Areas/Home/Views/Privacy.cshtml", new ErrorViewModel {RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier});
     }
 }
